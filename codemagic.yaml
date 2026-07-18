@@ -23,18 +23,5 @@ workflows:
         script: |
           flutter pub get
 
-      - name: Check Gemini API key
-        script: |
-          if [ -z "$GEMINI_API_KEY" ]; then
-            echo "ERROR: GEMINI_API_KEY missing"
-            exit 1
-          fi
-
-      - name: Build APK Release
-        script: |
-          flutter build apk --release \
-          --dart-define=GEMINI_API_KEY=$GEMINI_API_KEY \
-          --dart-define=GEMINI_MODEL=$GEMINI_MODEL
-
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
