@@ -1,0 +1,24 @@
+workflows:
+  android-workflow:
+    name: shinra_ia Android Build
+    max_build_duration: 60
+
+    triggering:
+      events:
+        - push
+
+      branch_patterns:
+        - pattern: main
+          include: true
+
+    scripts:
+      - name: Flutter clean
+        script: |
+          flutter clean
+
+      - name: Get packages
+        script: |
+          flutter pub get
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
